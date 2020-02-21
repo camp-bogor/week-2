@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <title></title>
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+    </body>
+    <script type="text/babel">
+        class App extends React.Component{
+            state = {
+                name: 'name 1'
+            };
+
+            changeState(){
+                // console.log(this.state.name);
+            }
+
+            changeStateName = () => {
+                this.setState({
+                    name: 'name 2'
+                })
+            }
+
+            // npm install -g create-react-app
+
+            actChangeName = (e) => {
+                this.setState({
+                    name: e.target.value
+                })
+            }
+
+            render(){
+                return(
+                    <div>
+                        <h1>Hello World {this.state.name}</h1>
+                        <p>ini adalah paragraf</p>
+                        <Navbar nama={this.state.name} />
+                        <button onClick={this.changeState.bind(this)}>Klik Me</button>
+                        <button onClick={this.changeStateName}>Klik Me 2</button>
+                        <input name="name" onChange={this.actChangeName} />
+                    </div>
+                )
+            }
+        }
+
+        class Navbar extends React.Component{
+            render(){
+                // console.log(this.props.name);
+                return(
+                    <div>
+                        <p>ini adalah component navbar {this.props.nama}</p>
+                        <Title />
+                    </div>
+                )
+            }
+        }
+
+        class Title extends React.Component{
+            render(){
+                return(
+                    <div>
+                        <p>ini adalah title</p>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <App />, 
+            document.getElementById('root'));
+    </script>
+</html>
